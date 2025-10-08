@@ -2,6 +2,125 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  font-family: 'Inter', sans-serif;
+/* Custom Base Styles */
+@layer base {
+  html {
+    font-size: 16px;
+  }
+
+  body {
+    @apply bg-gray-50 text-gray-900 antialiased;
+    font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+    line-height: 1.5;
+  }
+
+  /* Smooth scrolling for the entire app */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Custom focus styles for accessibility */
+  *:focus-visible {
+    @apply ring-2 ring-blue-500 ring-opacity-50 outline-none;
+  }
+}
+
+/* Custom Components Layer */
+@layer components {
+  /* Enhanced button styles */
+  .btn-primary {
+    @apply bg-blue-600 text-white px-4 py-2 rounded-md font-medium text-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors duration-200 shadow-sm;
+  }
+
+  .btn-secondary {
+    @apply bg-white text-gray-700 px-4 py-2 rounded-md font-medium text-sm border border-gray-300 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors duration-200 shadow-sm;
+  }
+
+  /* Card styles for dashboards and tables */
+  .card {
+    @apply bg-white rounded-lg shadow-sm border border-gray-200 p-6;
+  }
+
+  /* Table row hover */
+  tr:hover {
+    @apply bg-blue-50 transition-colors duration-150;
+  }
+
+  /* Status badges */
+  .badge-upcoming {
+    @apply inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-blue-100 text-blue-800;
+  }
+
+  .badge-completed {
+    @apply inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800;
+  }
+
+  .badge-pending {
+    @apply inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-yellow-100 text-yellow-800;
+  }
+
+  /* Modal overlay */
+  .modal-overlay {
+    @apply fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4;
+  }
+
+  /* Subtle blue gradient for headers */
+  .header-gradient {
+    background: linear-gradient(to right, #eff6ff, #dbeafe);
+  }
+}
+
+/* Custom Utilities Layer */
+@layer utilities {
+  /* Custom shadow for academic feel (soft and minimal) */
+  .shadow-academic {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0, 0, 0, 0.03);
+  }
+
+  /* Responsive text sizing for charts and tables */
+  .text-academic-sm {
+    @apply text-sm leading-5;
+  }
+
+  /* Animation for loading or transitions */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .animate-fadeIn {
+    animation: fadeIn 0.3s ease-out;
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .sidebar {
+    transform: translateX(-100%);
+  }
+
+  .sidebar.open {
+    transform: translateX(0);
+  }
+
+  /* Hide sidebar on mobile, show hamburger */
+  .navbar-mobile {
+    left: 0;
+  }
+}
+
+/* Print styles for academic reports (e.g., results) */
+@media print {
+  .no-print {
+    display: none;
+  }
+
+  body {
+    @apply bg-white text-black;
+  }
+
+  .shadow-sm, .border {
+    box-shadow: none !important;
+    border: none !important;
+  }
 }
